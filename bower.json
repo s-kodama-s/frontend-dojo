@@ -1,0 +1,21 @@
+{
+  "name": "frontend-dojo",
+  "description": "",
+  "main": "index.html",
+  "authors": [
+    "kodama <shouhei.kodama@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/s-kodama-s/frontend-dojo",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "polymer": "^2.0.1"
+  }
+}
