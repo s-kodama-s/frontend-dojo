@@ -1,4 +1,14 @@
 {
+
+  "login_success": [
+    {
+      "id": 1,
+      "name": "The Godfather",
+      "director": "Francis Ford Coppola",
+      "rating": 9.1
+    }
+  ],
+
   "movies": [
     {
       "id": 1,

@@ -1,0 +1,50 @@
+<dom-module id="my-form">
+    <template>
+        <div>header</div>
+
+        <form is="iron-form" id="my-form" method="get">
+        <!--<iron-form id="my-form">-->
+            <!--<form id="myform" method="get">-->
+                <input type="text" name="cenas">
+                <button type="button" on-click="cenas">Submit</button>
+                <!--<paper-button onclick="submitForm(event)">TEst</paper-button>-->
+            <!--</form>-->
+        <!--</iron-form>-->
+        </form>
+<!--        <script>
+            function submitForm(e) {
+                Polymer.dom(e).localTarget.parentElement.submit();
+            }
+        </script>-->
+
+    </template>
+
+    <script>
+        class MyForm extends Polymer.Element {
+
+            static get is() {
+                return 'my-form';
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+                const form = this.$['my-form'];
+                form.addEventListener('iron-form-presubmit', function (event) {
+                    event.preventDefault();
+                    console.log(form.serialize());
+                });
+            }
+
+            cenas() {
+                console.log('I only appear one time, cenas()');
+                console.log(this.$['my-form']);
+                this.shadowRoot.querySelector("#my-form").submit();
+                //this.$['my-form'].submit();
+            }
+
+        }
+
+        window.customElements.define(MyForm.is, MyForm);
+
+    </script>
+</dom-module>

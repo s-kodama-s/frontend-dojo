@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>JS Bin</title>
+
+    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/iron-form/iron-form.html">
+    <link rel="import" href="./bower_components/paper-button/paper-button.html">
+
+</head>
+<body>
+
+<fed-example-login></fed-example-login>
+
+<dom-module id="fed-example-login">
+    <template>
+
+        <iron-form id="fed-example-login">
+            <form method="get" action="http://localhost:3000/login_success">
+                <input type="text" name="cenas">
+                <button on-click="cenas">Login</button>
+            </form>
+        </iron-form>
+
+    </template>
+
+    <script>
+
+        class FedExampleLogin extends Polymer.Element {
+
+            static get is() {
+                return 'fed-example-login';
+            }
+
+            connectedCallback() {
+                super.connectedCallback();
+
+                const form = this.$['fed-example-login'];
+                form.addEventListener('iron-form-response', function(e) {
+                    console.log(e);
+                    console.log(e.detail);
+                    console.log(e.detail.response);
+                });
+            }
+
+            cenas() {
+                console.log("I only appear one time, cenas()");
+                //this.$['my-form'].submit();
+            }
+
+        }
+
+        window.customElements.define(FedExampleLogin.is, FedExampleLogin);
+
+    </script>
+</dom-module>
+
+</body>
+</html>

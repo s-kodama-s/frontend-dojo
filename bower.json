@@ -14,7 +14,11 @@
     "test",
     "tests"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "polymer": "^2.0.1",
+    "iron-form": "2.0-preview",
+    "paper-button": "^2.0.0"
+  },
   "devDependencies": {
     "polymer": "^2.0.1",
     "iron-form": "^1.1.5"
