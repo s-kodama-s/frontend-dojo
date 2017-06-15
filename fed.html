@@ -1,1 +1,37 @@
-fed!
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- import latest release version of all components from polygit -->
+
+    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+    <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/app-layout/app-toolbar/app-toolbar.html">
+
+    <!-- sample-content included for demo purposes only -->
+    <!--<link rel="import" href="app-layout/demo/sample-content.html">-->
+
+    <custom-style>
+        <style is="custom-style">
+            body {
+                /* No margin on body so toolbar can span the screen */
+                margin: 0;
+            }
+            app-toolbar {
+                /* Toolbar is the main header, so give it some color */
+                background-color: #1E88E5;
+                font-family: 'Roboto', Helvetica, sans-serif;
+                color: white;
+                --app-toolbar-font-size: 24px;
+            }
+        </style>
+    </custom-style>
+</head>
+<body>
+<app-toolbar>
+    <div main-title>Spork</div>
+    <div main-title>Spork2</div>
+    <div main-title>Spork3</div>
+</app-toolbar>
+<!--<sample-content size="10"></sample-content>-->
+</body>
+</html>
