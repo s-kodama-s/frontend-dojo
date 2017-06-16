@@ -6,6 +6,12 @@
     <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
     <link rel="import" href="./bower_components/app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="./bower_components/app-route/app-location.html">
+    <link rel="import" href="./bower_components/app-route/app-route.html">
+
+    <link rel="import" href="./license-create.html">
+    <link rel="import" href="./license-list.html">
+    <link rel="import" href="./license-settings.html">
 
     <!-- sample-content included for demo purposes only -->
     <!--<link rel="import" href="app-layout/demo/sample-content.html">-->
@@ -18,20 +24,70 @@
             }
             app-toolbar {
                 /* Toolbar is the main header, so give it some color */
-                background-color: #1E88E5;
+                background-color: #4CAF50;
                 font-family: 'Roboto', Helvetica, sans-serif;
-                color: white;
+                /*color: white;*/
                 --app-toolbar-font-size: 24px;
+            }
+
+            a {
+                text-decoration: none;
+                font-size: inherit;
+                color: inherit;
+            }
+            .toolbar {
+                @apply(--layout-horizontal);
+                @apply(--layout-end-justified);
+                /*background-color: rgba(255, 255, 255, 0.95);*/
+                background-color: #4CAF50;
+            }
+            .tabs {
+                height: 100%;
+                @apply(--layout-horizontal);
+            }
+            .tabs > a {
+                @apply(--layout-vertical);
+                @apply(--layout-center-center);
+                margin: 12px 16px 12px;
+                color: white;
+                /*border-bottom: 1px solid #222;*/
             }
         </style>
     </custom-style>
 </head>
 <body>
+
+<app-location route="{{route}}"></app-location>
+<app-route
+        route="{{route}}"
+        pattern="/:view"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+<iron-pages selected="[[routeData.view]]" attr-for-selected="name">
+    <license-list name="list" route="{{subroute}}"></license-list>
+    <license-create name="create" route="{{subroute}}"></license-create>
+    <settings name="settings" route="{{subroute}}"></settings>
+</iron-pages>
+
+<app-header reveals effects="waterfall" slot="header">
+
+    <app-toolbar class="toolbar">
+        <div class="tabs">
+            <a href="#list">ライセンスキー一覧</a>
+            <a href="#create">新規作成</a>
+            <a href="#settings">アカウント設定</a>
+        </div>
+    </app-toolbar>
+
+</app-header>
+<!--
 <app-toolbar>
     <div main-title>Spork</div>
-    <div main-title>Spork2</div>
-    <div main-title>Spork3</div>
-</app-toolbar>
+    <div condensed-title>Spork22</div>
+    <div spacer>Spork2</div>
+    <div spacer>Spork3</div>
+</app-toolbar>-->
 <!--<sample-content size="10"></sample-content>-->
 </body>
 </html>
