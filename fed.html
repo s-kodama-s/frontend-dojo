@@ -6,6 +6,7 @@
     <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
     <link rel="import" href="./bower_components/app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="./bower_components/iron-pages/iron-pages.html">
     <link rel="import" href="./bower_components/app-route/app-location.html">
     <link rel="import" href="./bower_components/app-route/app-route.html">
 
@@ -64,30 +65,23 @@
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-<iron-pages selected="[[routeData.view]]" attr-for-selected="name">
-    <license-list name="list" route="{{subroute}}"></license-list>
-    <license-create name="create" route="{{subroute}}"></license-create>
-    <settings name="settings" route="{{subroute}}"></settings>
-</iron-pages>
-
 <app-header reveals effects="waterfall" slot="header">
 
     <app-toolbar class="toolbar">
         <div class="tabs">
-            <a href="#list">ライセンスキー一覧</a>
-            <a href="#create">新規作成</a>
-            <a href="#settings">アカウント設定</a>
+            <a href="#/list">ライセンスキー一覧</a>
+            <a href="#/create">新規作成</a>
+            <a href="#/settings">アカウント設定</a>
         </div>
     </app-toolbar>
 
 </app-header>
-<!--
-<app-toolbar>
-    <div main-title>Spork</div>
-    <div condensed-title>Spork22</div>
-    <div spacer>Spork2</div>
-    <div spacer>Spork3</div>
-</app-toolbar>-->
-<!--<sample-content size="10"></sample-content>-->
+
+<iron-pages selected="[[routeData.view]]" attr-for-selected="name">
+    <license-list name="list" route="{{subroute}}"></license-list>
+    <license-create name="create" route="{{subroute}}"></license-create>
+    <license-settings name="settings" route="{{subroute}}"></license-settings>
+</iron-pages>
+
 </body>
 </html>
