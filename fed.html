@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- import latest release version of all components from polygit -->
-
     <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
     <link rel="import" href="./bower_components/app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="./bower_components/app-layout/app-header/app-header.html">
     <link rel="import" href="./bower_components/iron-pages/iron-pages.html">
     <link rel="import" href="./bower_components/app-route/app-location.html">
     <link rel="import" href="./bower_components/app-route/app-route.html">
 
-    <link rel="import" href="./license-create.html">
-    <link rel="import" href="./license-list.html">
-    <link rel="import" href="./license-settings.html">
+    <link rel="import" href="./bower_components/paper-button/paper-button.html">
 
-    <!-- sample-content included for demo purposes only -->
-    <!--<link rel="import" href="app-layout/demo/sample-content.html">-->
+    <link rel="import" href="./fed-components/instance-create.html">
+    <link rel="import" href="./fed-components/instance-list.html">
+    <link rel="import" href="./fed-components/account-settings.html">
 
     <custom-style>
         <style is="custom-style">
@@ -58,30 +56,44 @@
 </head>
 <body>
 
-<app-location route="{{route}}"></app-location>
-<app-route
-        route="{{route}}"
-        pattern="/:view"
-        data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
+<dom-bind>
 
-<app-header reveals effects="waterfall" slot="header">
+    <template is="dom-bind">
 
-    <app-toolbar class="toolbar">
-        <div class="tabs">
-            <a href="#/list">ライセンスキー一覧</a>
-            <a href="#/create">新規作成</a>
-            <a href="#/settings">アカウント設定</a>
-        </div>
-    </app-toolbar>
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route
+            route="{{route}}"
+            pattern="/:viewType"
+            data="{{routeData}}"
+            tail="{{subroute}}"></app-route>
 
-</app-header>
+    <app-route
+            route="{{route}}"
+            pattern="/create/:firstP/:secondP"
+            data="{{routeSubData}}"
+            tail="{{subsubroute}}"></app-route>
 
-<iron-pages selected="[[routeData.view]]" attr-for-selected="name">
-    <license-list name="list" route="{{subroute}}"></license-list>
-    <license-create name="create" route="{{subroute}}"></license-create>
-    <license-settings name="settings" route="{{subroute}}"></license-settings>
-</iron-pages>
+    <app-header reveals slot="header">
+
+        <app-toolbar class="toolbar">
+            <div class="tabs">
+                <a href="#/list">インスタンス一覧</a>
+                <a href="#/create">新規作成</a>
+                <a href="#/settings">アカウント設定</a>
+            </div>
+        </app-toolbar>
+
+    </app-header>
+
+    <iron-pages selected="[[routeData.viewType]]" attr-for-selected="name" fallback-selection="list">
+        <instance-list name="list"></instance-list>
+        <instance-create name="create"></instance-create>
+        <account-settings name="settings"></account-settings>
+    </iron-pages>
+
+    </template>
+
+</dom-bind>
 
 </body>
 </html>

@@ -1,0 +1,198 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="license-data-provider">
+    <script>
+        addEventListener('WebComponentsReady', function () {
+            Polymer({
+                is: 'license-data-provider',
+
+                properties: {
+
+                    loading: {
+                        type: Boolean,
+                        notify: true
+                    },
+
+                    delay: {
+                        type: Number,
+                        value: 0
+                    },
+
+                    dataProvider: {
+                        notify: true,
+                        value: function () {
+                            var _this = this;
+                            return function (params, callback) {
+                                var items = Array.apply(null, {length: params.pageSize}).map(function (item, index) {
+                                    var _url = 'http://randomuser.me?index=' + (index + params.page * params.pageSize);
+                                    params.sortOrders.forEach(function(sort) {
+                                        _url += '&orders[]=' + sort.path + ' ' + sort.direction;
+                                    });
+                                    console.log(_url);
+                                    //return window.getJSON('http://randomuser.me?index=' + (index + params.page * params.pageSize));
+                                    return window.getJSON(_url);
+                                });
+                                _this.loading = true;
+                                setTimeout(function () {
+                                    callback(items);
+                                    _this.loading = false;
+                                }, _this.delay);
+                            };
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</dom-module>
+
+<dom-module id="license-array-data-provider">
+    <script>
+        addEventListener('WebComponentsReady', function () {
+            Polymer({
+                is: 'license-array-data-provider',
+
+                properties: {
+                    size: {
+                        type: Number,
+                        value: null
+                    },
+
+                    items: {
+                        notify: true,
+                        computed: '_computeItems(size)'
+                    }
+                },
+
+                _computeItems: function (size) {
+                    if (size !== null) {
+                        return window.licenses.slice(0, size);
+                    } else {
+                        return window.licenses.list;
+                    }
+                }
+            });
+        });
+    </script>
+</dom-module>
+
+<script>
+    (function () {
+        window.getJSON = function (url, callback) {
+            if (url.indexOf('randomuser.me') > -1) {
+                var index = parseInt(getParameterByName(url, 'index') || 0);
+                //console.log(index);
+                return JSON.parse(JSON.stringify(licenses.list[index % licenses.list.length])); //clone object
+                //return JSON.parse(JSON.stringify(users.results[index % users.results.length])); //clone object
+            }
+        };
+
+        function getParameterByName(url, name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)'),
+                results = regex.exec(url);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        window.licenses = {
+            "list": [{
+                "keyname": "A社様向け評価用キー",
+                "create": {
+                    "date": "2017/06/01 13:50:23",
+                    "user": "y-endo",
+                },
+                "update": {
+                    "date": "",
+                    "user": ""
+                },
+                "key": {
+                    "fileurl": "http://hogehogefoo/licensekey/usera/licensekey"
+                }
+            }, {
+                "keyname": "B社様向け評価用キー",
+                "create": {
+                    "date": "2017/06/02 10:11:03",
+                    "user": "k-endo",
+                },
+                "update": {
+                    "date": "",
+                    "user": ""
+                },
+                "key": {
+                    "fileurl": "http://hogehogefoo/licensekey/userb/licensekey"
+                }
+
+            }]
+        }
+
+/*        window.users = {
+            "results": [{
+                "gender": "female",
+                "name": {
+                    "title": "ms",
+                    "first": "laura",
+                    "last": "arnaud"
+                },
+                "location": {
+                    "street": "5372 avenue du château",
+                    "city": "perpignan",
+                    "state": "jura",
+                    "zip": 93076
+                },
+                "email": "laura.arnaud@example.com",
+                "username": "yellowdog501",
+                "password": "zhou",
+                "phone": "01-31-40-34-74",
+                "picture": {
+                    "thumbnail": "https://randomuser.me/api/portraits/thumb/women/19.jpg",
+                    "large": "https://randomuser.me/api/portraits/women/19.jpg"
+                }
+            }, {
+                "gender": "male",
+                "name": {
+                    "title": "mr",
+                    "first": "fabien",
+                    "last": "le gall"
+                },
+                "location": {
+                    "street": "9932 rue bossuet",
+                    "city": "nanterre",
+                    "state": "indre",
+                    "zip": 86307
+                },
+                "email": "fabien.le gall@example.com",
+                "username": "goldenlion501",
+                "password": "outkast",
+                "phone": "03-59-32-43-22",
+                "picture": {
+                    "thumbnail": "https://randomuser.me/api/portraits/thumb/men/52.jpg",
+                    "large": "https://randomuser.me/api/portraits/men/52.jpg"
+                }
+            }, {
+                "gender": "male",
+                "name": {
+                    "title": "mr",
+                    "first": "ruben",
+                    "last": "leclercq"
+                },
+                "location": {
+                    "street": "6698 rue de l'abbaye",
+                    "city": "clermont-ferrand",
+                    "state": "marne",
+                    "zip": 80183
+                },
+                "email": "ruben.leclercq@example.com",
+                "username": "crazymouse343",
+                "password": "brutus",
+                "phone": "01-58-73-95-64",
+                "picture": {
+                    "thumbnail": "https://randomuser.me/api/portraits/thumb/men/51.jpg",
+                    "large": "https://randomuser.me/api/portraits/men/51.jpg"
+                }
+            }],
+            "nationality": "FR",
+            "seed": "f94158be2e69b5cf03",
+            "version": "0.7"
+        }*/
+    })();
+</script>
