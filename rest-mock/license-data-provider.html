@@ -24,7 +24,7 @@
                             var _this = this;
                             return function (params, callback) {
                                 var items = Array.apply(null, {length: params.pageSize}).map(function (item, index) {
-                                    var _url = 'http://randomuser.me?index=' + (index + params.page * params.pageSize);
+                                    var _url = 'http://randomuser.me?index=' + (index + params.page * params.pageSize) + '&count=' + params.pageSize;
                                     params.sortOrders.forEach(function(sort) {
                                         _url += '&orders[]=' + sort.path + ' ' + sort.direction;
                                     });

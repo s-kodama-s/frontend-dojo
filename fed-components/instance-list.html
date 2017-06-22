@@ -12,14 +12,27 @@
 
 <dom-module id="instance-list">
     <template>
-        <div>list</div>
 
-        <!--<iron-ajax auto url="http://demo.vaadin.com/demo-data/1.0/people?count=200" handle-as="json" last-response="{{users}}"></iron-ajax>-->
+        <style>
+            vaadin-grid#ls-license {
+                --vaadin-grid-header-cell: {
+                    height: 64px;
+                };
+                --vaadin-grid-body-row-hover-cell: {
+                    background-color: #f0f0f0;
+                };
+                --vaadin-grid-cell: {
+                    /*border-bottom: 1px solid rgba(248, 250, 252, 0.9);*/
+                    border-bottom: 1px solid rgba(208, 217, 225, 0.9);
+                    border-right: 1px solid rgba(208, 217, 225, 0.9);
+                    border-collapse: collapse;
+                }
+            }
+        </style>
 
         <license-data-provider data-provider="{{dataProvider}}"></license-data-provider>
 
-        <!--<vaadin-grid items="[[users.result]]">-->
-        <vaadin-grid data-provider="[[dataProvider]]" size="200">
+        <vaadin-grid data-provider="[[dataProvider]]" size="200" id="ls-license">
             <vaadin-grid-column width="70px" flex-grow="0">
                 <!--<template class="header">#</template>-->
                 <template class="header">
@@ -36,7 +49,9 @@
             </vaadin-grid-column>
 
             <vaadin-grid-column width="calc(10% - 100px)">
-                <template class="header">作成者</template>
+                <template class="header">
+                    <vaadin-grid-sorter path="create.user">作成者</vaadin-grid-sorter>
+                </template>
                 <template>[[item.create.user]]</template>
             </vaadin-grid-column>
 

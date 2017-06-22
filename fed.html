@@ -51,6 +51,9 @@
                 color: white;
                 /*border-bottom: 1px solid #222;*/
             }
+            .page-padder {
+                padding: 20px;
+            }
         </style>
     </custom-style>
 </head>
@@ -85,7 +88,7 @@
 
     </app-header>
 
-    <iron-pages selected="[[routeData.viewType]]" attr-for-selected="name" fallback-selection="list">
+    <iron-pages selected="[[routeData.viewType]]" attr-for-selected="name" fallback-selection="list" class="page-padder">
         <instance-list name="list"></instance-list>
         <instance-create name="create"></instance-create>
         <account-settings name="settings"></account-settings>
