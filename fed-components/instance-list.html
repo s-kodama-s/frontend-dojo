@@ -1,4 +1,5 @@
 <!--<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">-->
+
 <link rel="import" href="../bower_components/iron-image/iron-image.html">
 
 
@@ -8,11 +9,13 @@
 
 <!--<link rel="import" href="../bower_components/vaadin-grid/demo/x-data-provider.html">-->
 <link rel="import" href="../rest-mock/license-data-provider.html">
-
+<link rel="import" href="../bower_components/slate-font-awesome/slate-font-awesome.html">
 
 <dom-module id="instance-list">
     <template>
-
+        <custom-style>
+            <style include="slate-font-awesome"></style>
+        </custom-style>
         <style>
             vaadin-grid#ls-license {
                 --vaadin-grid-header-cell: {
@@ -28,27 +31,43 @@
                     border-collapse: collapse;
                 }
             }
+            ul {
+                display: -webkit-flex;
+                display: flex;
+                -webkit-justify-content: flex-start;
+                justify-content: flex-start;
+                list-style-type: none;
+                padding: 0;
+                margin: 0.5em;
+            }
+            ul li:last-of-type {
+                margin-left: auto;
+            }
         </style>
 
         <license-data-provider data-provider="{{dataProvider}}"></license-data-provider>
 
         <vaadin-grid data-provider="[[dataProvider]]" size="200" id="ls-license">
-            <vaadin-grid-column width="70px" flex-grow="0">
-                <!--<template class="header">#</template>-->
+<!--            <vaadin-grid-column width="70px" flex-grow="0">
                 <template class="header">
                     <vaadin-grid-sorter path="index">#</vaadin-grid-sorter>
                 </template>
                 <template>[[index]]</template>
-            </vaadin-grid-column>
+            </vaadin-grid-column>-->
 
             <vaadin-grid-column width="calc(20% - 100px)">
                 <template class="header">
                     <vaadin-grid-sorter path="keyname">キー名称</vaadin-grid-sorter>
                 </template>
-                <template>[[item.keyname]]</template>
+                <template>
+                    <ul>
+                        <li>[[item.keyname]]</li>
+                        <li><i class="fa fa-download"></i></li>
+                    </ul>
+                </template>
             </vaadin-grid-column>
 
-            <vaadin-grid-column width="calc(10% - 100px)">
+            <vaadin-grid-column width="calc(15% - 100px)">
                 <template class="header">
                     <vaadin-grid-sorter path="create.user">作成者</vaadin-grid-sorter>
                 </template>
@@ -60,9 +79,14 @@
                 <template>[[item.create.date]]</template>
             </vaadin-grid-column>
 
-            <vaadin-grid-column width="calc(40% - 100px)">
-                <template class="header">ダウンロード</template>
-                <template>[[item.key.fileurl]]</template>
+            <vaadin-grid-column width="calc(25% - 100px)">
+                <template class="header">バージョン</template>
+                <template>[[item.key.version]]</template>
+            </vaadin-grid-column>
+
+            <vaadin-grid-column width="calc(30% - 100px)">
+                <template class="header">エディション</template>
+                <template>[[item.key.edition]]</template>
             </vaadin-grid-column>
 
         </vaadin-grid>

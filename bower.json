@@ -23,7 +23,8 @@
     "iron-pages": "PolymerElements/iron-pages#^2.0.0",
     "paper-input": "PolymerElements/paper-input#^2.0.1",
     "vaadin-grid": "vaadin/vaadin-grid#3.0.0-beta1",
-    "iron-image": "PolymerElements/iron-image#^2.1.1"
+    "iron-image": "PolymerElements/iron-image#^2.1.1",
+    "slate-font-awesome": "JeffLefoll/slate-font-awesome#^4.7.3"
   },
   "devDependencies": {
     "polymer": "^2.0.1",

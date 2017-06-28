@@ -15,6 +15,8 @@
     <link rel="import" href="./fed-components/instance-list.html">
     <link rel="import" href="./fed-components/account-settings.html">
 
+    <link rel="import" href="./bower_components/slate-font-awesome/slate-font-awesome.html">
+
     <custom-style>
         <style is="custom-style">
             body {
@@ -88,6 +90,10 @@
 
     </app-header>
 
+
+    <custom-style>
+        <style include="slate-font-awesome"></style>
+    </custom-style>
     <iron-pages selected="[[routeData.viewType]]" attr-for-selected="name" fallback-selection="list" class="page-padder">
         <instance-list name="list"></instance-list>
         <instance-create name="create"></instance-create>

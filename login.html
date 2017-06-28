@@ -5,19 +5,41 @@
     <meta name="viewport" content="width=device-width">
     <title>JS Bin</title>
 
-    <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <link rel="import" href="./bower_components/polymer/polymer.html">
-    <link rel="import" href="./bower_components/iron-form/iron-form.html">
-    <link rel="import" href="./bower_components/paper-button/paper-button.html">
+
+    <!--
+        <script src="./bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+        <link rel="import" href="./bower_components/iron-form/iron-form.html">
+        <link rel="import" href="./bower_components/paper-button/paper-button.html">
+    -->
+
+    <link rel="import" href="./bower_components/slate-font-awesome/slate-font-awesome.html">
 
 </head>
 <body>
+
+<custom-style>
+    <style include="slate-font-awesome"></style>
+</custom-style>
+
+<dom-module id="instance-list-identig">
+    <template>
+
+        <i class="fa fa-download">asfe</i>
+    </template>
+    <script>
+        class InstanceListIdentig extends Polymer.Element {
+            static get is() { return 'instance-list-identig'; }
+        }
+        window.customElements.define(InstanceListIdentig.is, InstanceListIdentig);
+    </script>
+</dom-module>
+<instance-list-identig></instance-list-identig>
 
 <fed-example-login></fed-example-login>
 
 <dom-module id="fed-example-login">
     <template>
-
         <style>
             .login-page {
                 width: 360px;
@@ -64,13 +86,13 @@
             }
         </style>
         <iron-form id="fed-example-login">
-            <div class="form">
+<!--            <div class="form">
                 <form method="post" action="http://localhost:3001/parrot.json" enctype="application/json">
                     <input type="text" name="username" placeholder="username"/>
                     <input type="password" name="password" placeholder="password"/>
                     <button on-click="authenticate">Login</button>
                 </form>
-            </div>
+            </div>-->
         </iron-form>
 
     </template>
@@ -105,6 +127,8 @@
 
     </script>
 </dom-module>
+
+<i class="fa fa-download"></i>
 
 </body>
 </html>
