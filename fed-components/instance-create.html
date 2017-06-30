@@ -1,6 +1,115 @@
+
+<link rel="import" href="../bower_components/paper-radio-group/paper-radio-group.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
 <dom-module id="instance-create">
     <template>
+        <custom-style>
+            <style include="slate-font-awesome">
+
+                .flex-container-row3 {
+                    /*display: flex;*/
+                    /*flex-direction: row;*/
+
+                    display: inline-flex;
+                    padding: 30px 30px 0 30px;
+                }
+                .sub {
+                    width: 33.333%;
+                    /*display: block;*/
+                }
+
+                .flex-container {
+                    display: flex;
+                    flex-direction: column;
+
+                    padding: 30px 30px 0 30px;
+                }
+                .flex-container label {
+                    /*font-size: larger;*/
+                    font-weight: bold;
+                }
+                .flex-container input {
+                    border: 1px solid #c2c2c2;
+                    border-radius: 3px;
+                    padding: 7px;
+                    box-shadow: 1px 1px 4px #ebebeb;
+                }
+
+            </style>
+        </custom-style>
+
         <div>create</div>
+
+
+        <div class="flex-container">
+        <label id="label1">キー作成対象を選択:</label>
+        <paper-radio-group aria-labelledby="label1">
+            <paper-radio-button name="a" selected>Logstorage本体(Console/LogGate)</paper-radio-button>
+            <paper-radio-button name="b">X/SIEM</paper-radio-button>
+            <paper-radio-button name="d">ELC Analytics</paper-radio-button>
+        </paper-radio-group>
+        </div>
+
+        <div class="flex-container">
+            <label id="label2">バージョン:</label>
+            <!--<paper-input></paper-input>-->
+            <input type="text" value="6.1.0">
+        </div>
+
+        <div class="flex-container">
+            <label>エディション:</label>
+            <paper-radio-group>
+                <paper-radio-button name="wg">ワークグループ版</paper-radio-button>
+                <paper-radio-button name="st">スタンダード版</paper-radio-button>
+                <paper-radio-button name="eh">エンハンスド版</paper-radio-button>
+                <paper-radio-button name="ep">エンタープライズ版</paper-radio-button>
+                <paper-radio-button name="ad">アドバンスド版</paper-radio-button>
+            </paper-radio-group>
+        </div>
+
+        <div class="flex-container">
+            <label>DBサーバホスト名:</label>
+            <input type="text">
+        </div>
+
+        <div class="flex-container-row3">
+            <div class="sub">
+                <label>コンソールサーバ数</label>
+                <input type="text">
+            </div>
+
+            <div class="sub">
+                <label>LogGate数</label>
+                <input type="text">
+            </div>
+
+            <div class="sub">
+                <label>ログソース数</label>
+                <input type="text">
+            </div>
+        </div>
+
+        <div class="flex-container">
+            <label>LogGate数</label>
+            <input type="text">
+        </div>
+
+        <div class="flex-container">
+            <label>ログソース数</label>
+            <input type="text">
+        </div>
+
+        <div class="flex-container">
+            <label>利用者名</label>
+            <input type="text">
+        </div>
+
+        <div class="flex-container">
+            <label>所属</label>
+            <input type="text">
+        </div>
+
     </template>
 
     <script>
