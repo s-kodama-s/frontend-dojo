@@ -1,0 +1,43 @@
+
+<dom-module id="ls-lic-input">
+    <template>
+        <label>[[itemName]]</label>
+        <input type="text" value="{{value::input}}">
+        <template is="dom-if" if="{{hasUnlimited}}">
+            <input type="checkbox" value="{{isUnlimitedEdition::change}}">無制限
+        </template>
+    </template>
+    <script>
+        class LsLicInput extends Polymer.Element {
+            static get is() {
+                return 'ls-lic-input';
+            }
+            static get properties() {
+                return {
+                    value: {
+                        type: Number,
+                        observer: '_valueChanged'
+                    },
+                    itemName: String,
+                    hostChecked: Boolean,
+                    isUnlimitedEdition: {
+                        type: Boolean,
+                        observer: '_toggleUnlimitedEdition'
+                    },
+                    hasUnlimited: Boolean
+                }
+            }
+            toggle(hc) {
+                console.log(hc);
+                console.log('hey!');
+            }
+            _valueChanged(n, o) {
+                console.log(n + ':' + o);
+            }
+            _toggleUnlimitedEdition(n, o) {
+                console.log(n + ':' + o);
+            }
+        }
+        window.customElements.define(LsLicInput.is, LsLicInput);
+    </script>
+</dom-module>
