@@ -1,10 +1,17 @@
 
 <dom-module id="ls-lic-input">
     <template>
+
+        <custom-style>
+            <style include="slate-font-awesome">
+
+            </style>
+        </custom-style>
+
         <label>[[itemName]]</label>
-        <input type="text" value="{{value::input}}">
+        <input id="{{id}}" type="text" value="{{value::input}}">
         <template is="dom-if" if="{{hasUnlimited}}">
-            <input type="checkbox" value="{{isUnlimitedEdition::change}}">無制限
+            <input type="checkbox" checked="{{isUnlimitedEdition::change}}">無制限
         </template>
     </template>
     <script>
@@ -14,6 +21,9 @@
             }
             static get properties() {
                 return {
+                    id: {
+                        type: String
+                    },
                     value: {
                         type: Number,
                         observer: '_valueChanged'
@@ -22,7 +32,11 @@
                     hostChecked: Boolean,
                     isUnlimitedEdition: {
                         type: Boolean,
+                        value: false,
                         observer: '_toggleUnlimitedEdition'
+                    },
+                    prevValue: {
+                        type: Number
                     },
                     hasUnlimited: Boolean
                 }
@@ -32,10 +46,17 @@
                 console.log('hey!');
             }
             _valueChanged(n, o) {
-                console.log(n + ':' + o);
+                //console.log(n + ':' + o);
             }
             _toggleUnlimitedEdition(n, o) {
-                console.log(n + ':' + o);
+                if (n) {
+                    this.prevValue = this.value;
+                    this.value = -1;
+                } else {
+                    if (this.prevValue !== undefined) {
+                        this.value = this.prevValue;
+                    }
+                }
             }
         }
         window.customElements.define(LsLicInput.is, LsLicInput);
